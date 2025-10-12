@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #ddb971;
+}
+
+@layer components {
+  .focus {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300 focus-visible:outline-dotted;
+  }
+
+  .input {
+    @apply min-h-[50px] w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300 focus-visible:outline-dotted;
+  }
+
+  .txt-gradient {
+    @apply bg-[linear-gradient(130deg,#ddb972_10%,#b18f4a_25%,#ddb972_45%,#dfbe6a_55%,#ddb972_75%,#b18f4a_90%)] bg-clip-text text-transparent;
+  }
+
+  .box {
+    @apply relative col-span-1 row-span-1 flex aspect-square h-full w-full items-center justify-center overflow-hidden rounded p-2;
+  }
+
+  .box-double {
+    @apply col-span-2 row-span-2;
+    aspect-ratio: 2 / 2;
+  }
+
+  .box-portrait {
+    @apply col-span-1 row-span-2;
+    aspect-ratio: 1 / 2;
+  }
+
+  .box-landscape {
+    @apply col-span-2 row-span-1;
+    aspect-ratio: 2 / 1;
+  }
+
+  .box img {
+    @apply h-full w-full rounded-2xl border-4 border-gray-500/30 object-cover object-center;
+  }
+}
+
+@layer utilities {
+  .font-montserrat {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+}
+
+.active {
+  color: #ddb971;
+}
