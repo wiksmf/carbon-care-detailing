@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { AuthContextProvider } from "./context/AuthContext";
@@ -10,17 +11,27 @@ import Gallery from "./pages/Gallery";
 import Services from "./pages/Services";
 import Promotions from "./pages/Promotions";
 import Blog from "./pages/Blog";
-import PrivateCertifications from "./pages/PrivateCertifications";
-import PrivateBlog from "./pages/PrivateBlog";
-import PrivateGallery from "./pages/PrivateGallery";
-import PrivateHome from "./pages/PrivateHome";
 import PageNotFound from "./pages/PageNotFound";
 
 import Post from "./ui/Post";
 import Photos from "./ui/Photos";
 import Login from "./ui/Login";
 import PrivateRoute from "./ui/PrivateRoute";
-import PrivateLayout from "./ui/PrivateLayout";
+import Spinner from "./ui/Spinner";
+
+const PrivateHome = lazy(() => import("./pages/PrivateHome"));
+const PrivateCertifications = lazy(
+  () => import("./pages/PrivateCertifications"),
+);
+const PrivateGallery = lazy(() => import("./pages/PrivateGallery"));
+const PrivateBlog = lazy(() => import("./pages/PrivateBlog"));
+const PrivateLayout = lazy(() => import("./ui/PrivateLayout"));
+
+const LazyLoad = (Component: React.ComponentType) => (
+  <Suspense fallback={<Spinner />}>
+    <Component />
+  </Suspense>
+);
 
 function App() {
   return (
@@ -44,16 +55,15 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route
             path="/cms"
-            element={
-              <PrivateRoute>
-                <PrivateLayout />
-              </PrivateRoute>
-            }
+            element={<PrivateRoute>{LazyLoad(PrivateLayout)}</PrivateRoute>}
           >
-            <Route index element={<PrivateHome />} />{" "}
-            <Route path="certyfikaty" element={<PrivateCertifications />} />
-            <Route path="realizacje" element={<PrivateGallery />} />
-            <Route path="blog" element={<PrivateBlog />} />
+            <Route index element={LazyLoad(PrivateHome)} />
+            <Route
+              path="certyfikaty"
+              element={LazyLoad(PrivateCertifications)}
+            />
+            <Route path="realizacje" element={LazyLoad(PrivateGallery)} />
+            <Route path="blog" element={LazyLoad(PrivateBlog)} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
