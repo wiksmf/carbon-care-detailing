@@ -11,7 +11,11 @@ import { getFirst7PhotosOfMostRecentCar } from "../api/firestoreService";
 import ButtonLink from "../ui/ButtonLink";
 import Spinner from "../ui/Spinner";
 
-import c1 from "/images/c1.webp";
+import car1 from "/images/c1.webp";
+import car2 from "/images/vw.jpg";
+import car3 from "/images/mazda.jpg";
+import car4 from "/images/bmw.jpg";
+import car5 from "/images/volvo.jpg";
 import c2 from "/images/c2.webp";
 import c3 from "/images/c3.webp";
 
@@ -22,6 +26,12 @@ function Homepage() {
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const carImages = [car1, car2, car3, car4, car5];
+  const [selectedCarImage] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * carImages.length);
+    return carImages[randomIndex];
+  });
 
   useEffect(() => {
     async function loadGallery() {
@@ -39,13 +49,13 @@ function Homepage() {
     <div className="mx-auto max-w-7xl pt-25 lg:pt-30">
       <div className="relative h-[70vh] w-full overflow-hidden md:h-[80vh]">
         <img
-          src={c1}
+          src={selectedCarImage}
           loading="lazy"
-          className="h-[70vh] w-full rounded-2xl border-4 border-gray-500/30 object-contain object-top shadow-xs shadow-gray-800/40 md:h-[80vh] md:object-cover md:object-bottom"
+          className="h-[60vh] w-full rounded-2xl border-4 border-gray-500/30 object-contain object-top shadow-xs shadow-gray-800/40 md:h-[80vh] md:object-cover md:object-center"
           alt="Kompleksowe usługi pielęgnacji samochodów w Olkuszu - Carbon Care Detailing"
         />
 
-        <div className="absolute bottom-0 max-w-3xl rounded-tr-2xl bg-gray-950 pt-5 pr-5 md:pt-10">
+        <div className="absolute bottom-0 max-w-3xl rounded-tr-2xl border-t-4 border-r-4 border-gray-500/30 bg-gray-950 pt-5 pr-5 md:pt-10">
           <div className="relative">
             <h1 className="txt-gradient mb-8 text-2xl leading-tight tracking-wide sm:text-3xl lg:text-4xl">
               <strong className="font-medium">

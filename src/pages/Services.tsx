@@ -1005,6 +1005,161 @@ function Services() {
       </div>
       {/* End: Folie winylowe */}
 
+      {/* Powłoki Elastomerowe */}
+      <h2 className="txt-gradient mx-auto mt-12 mb-8 w-fit text-center text-xl font-medium text-balance sm:text-2xl lg:text-3xl">
+        <strong className="font-medium">Powłoki Elastomerowe</strong>
+      </h2>
+
+      <div className="mx-auto w-full px-4 md:rounded-2xl md:border-4 md:border-gray-500/30 md:bg-[linear-gradient(82deg,#030712_10%,#0c121e_40%,#030712_80%,transparent)] md:px-6 md:text-sm md:shadow-xs md:shadow-gray-800/40">
+        <div className="mx-auto grid max-w-sm text-sm md:-mx-6 md:max-w-none md:grid-cols-2">
+          <div className="md:contents">
+            {/* Wariant standard */}
+            <div
+              className="flex flex-col justify-center max-md:hidden md:order-2"
+              aria-hidden="true"
+            >
+              <div className="flex items-center border-b border-gray-500/30 px-3 py-2 md:min-h-[60px] md:px-5 md:py-3">
+                <span className="text-sm leading-relaxed sm:text-base lg:text-lg">
+                  <strong>Wariant standard</strong>
+                  <br />
+                  Jednowarstwowy elastomer. Okres ochrony lakieru wg. producenta
+                  to <strong>5 lat</strong>, PPF/Vinyl <strong>2 lata</strong>,
+                  plastiki <strong>18 miesięcy</strong>, felgi{" "}
+                  <strong>2 lata</strong>.
+                </span>
+              </div>
+            </div>
+            {/* Wariant Premium */}
+            <div
+              className="flex flex-col justify-center max-md:hidden md:order-3"
+              aria-hidden="true"
+            >
+              <div className="flex items-center border-b border-gray-500/30 px-3 py-2 md:min-h-[60px] md:px-5 md:py-3">
+                <span className="text-sm leading-relaxed sm:text-base lg:text-lg">
+                  <strong>Wariant Premium</strong>
+                  <br />
+                  Dwie warstwy elastomeru, kombinacja ta zapewnia wyjątkowo
+                  efektywne domywanie się samochodu nawet na myjni bezdotykowej
+                  (wykorzystując wyłącznie pre wash). Okres ochrony lakieru wg.
+                  producenta <strong>5 lat</strong>, dedykowany dla klientów,
+                  którym zależy przede wszystkim na łatwości pielęgnacji oraz
+                  wyeliminowaniu problemu ze zbijaniem owadów w okresie letnim.
+                </span>
+              </div>
+            </div>
+            {/* Wariant Premium Plus */}
+            <div
+              className="flex flex-col justify-center max-md:hidden md:order-4"
+              aria-hidden="true"
+            >
+              <div className="flex items-center border-b border-gray-500/30 px-3 py-2 md:min-h-[60px] md:px-5 md:py-3">
+                <span className="text-sm leading-relaxed sm:text-base lg:text-lg">
+                  <strong>Wariant Premium Plus</strong>
+                  <br />
+                  Bardzo efektywna kombinacja zapewniająca najwyższą z możliwych
+                  w Titan Coatings odporność chemiczną pH 1-14, łatwość
+                  pielęgnacji, głęboki połysk i wyjątkowo ograniczone
+                  przywieranie osadu mineralnego lub owadów. Okres ochrony
+                  lakieru wg. producenta <strong>6 lat</strong>.
+                </span>
+              </div>
+            </div>
+            {/* Wariant Ultimate */}
+            <div
+              className="flex flex-col justify-center max-md:hidden md:order-5"
+              aria-hidden="true"
+            >
+              <div className="flex items-center px-3 py-2 md:min-h-[60px] md:px-5 md:py-3">
+                <span className="text-sm leading-relaxed sm:text-base lg:text-lg">
+                  <strong>Wariant Ultimate</strong>
+                  <br />
+                  Najbardziej rozbudowana kombinacja, która oprócz korzyści
+                  wymienionych w powyższym punkcie, posiada również zdolności do
+                  samo poziomowania oraz samoleczenia. Okres ochrony lakieru wg.
+                  producenta <strong>7 lat</strong>. Istnieje możliwość
+                  replikacji drugiego top coatu raz do roku na przykład w
+                  okresie wiosny, w celu wzmocnienia efektu łatwego usuwania
+                  owadów i zanieczyszczeń.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border-4 border-gray-500/30 bg-[linear-gradient(82deg,#030712_10%,#0c121e_40%,#030712_80%,transparent)] text-sm shadow-xs shadow-gray-800/40 md:contents">
+            <div className="flex flex-col justify-center md:order-2">
+              <div className="flex h-full flex-wrap items-center gap-1 border-b border-gray-500/30 py-2 md:min-h-[60px] md:justify-end md:py-3">
+                <span className="px-3 text-sm leading-relaxed sm:text-base md:sr-only md:px-5 lg:text-lg">
+                  <strong>Wariant standard</strong>
+                  <br />
+                  Jednowarstwowy elastomer. Okres ochrony lakieru wg. producenta
+                  to <strong>5 lat</strong>, PPF/Vinyl <strong>2 lata</strong>,
+                  plastiki <strong>18 miesięcy</strong>, felgi{" "}
+                  <strong>2 lata</strong>.
+                </span>
+                <span className="ml-auto px-3 text-sm leading-relaxed sm:text-base md:px-5 lg:text-lg">
+                  1 999 - 2 499 PLN netto
+                </span>
+              </div>
+            </div>
+            {/* Wariant Premium */}
+            <div className="flex flex-col justify-center md:order-3">
+              <div className="flex h-full flex-wrap items-center gap-1 border-b border-gray-500/30 py-2 md:min-h-[60px] md:justify-end md:py-3">
+                <span className="px-3 text-sm leading-relaxed sm:text-base md:sr-only md:px-5 lg:text-lg">
+                  <strong>Wariant Premium</strong>
+                  <br />
+                  Dwie warstwy elastomeru, kombinacja ta zapewnia wyjątkowo
+                  efektywne domywanie się samochodu nawet na myjni bezdotykowej
+                  (wykorzystując wyłącznie pre wash). Okres ochrony lakieru wg.
+                  producenta <strong>5 lat</strong>, dedykowany dla klientów,
+                  którym zależy przede wszystkim na łatwości pielęgnacji oraz
+                  wyeliminowaniu problemu ze zbijaniem owadów w okresie letnim.
+                </span>
+                <span className="ml-auto px-3 text-sm leading-relaxed sm:text-base md:px-5 lg:text-lg">
+                  2 999 - 3 299 PLN netto
+                </span>
+              </div>
+            </div>
+            {/* Wariant Premium Plus */}
+            <div className="flex flex-col justify-center md:order-4">
+              <div className="flex h-full flex-wrap items-center gap-1 border-b border-gray-500/30 py-2 md:min-h-[60px] md:justify-end md:py-3">
+                <span className="px-3 text-sm leading-relaxed sm:text-base md:sr-only md:px-5 lg:text-lg">
+                  <strong>Wariant Premium Plus</strong>
+                  <br />
+                  Bardzo efektywna kombinacja zapewniająca najwyższą z możliwych
+                  w Titan Coatings odporność chemiczną pH 1-14, łatwość
+                  pielęgnacji, głęboki połysk i wyjątkowo ograniczone
+                  przywieranie osadu mineralnego lub owadów. Okres ochrony
+                  lakieru wg. producenta <strong>6 lat</strong>.
+                </span>
+                <span className="ml-auto px-3 text-sm leading-relaxed sm:text-base md:px-5 lg:text-lg">
+                  3 699 - 4 399 PLN netto
+                </span>
+              </div>
+            </div>
+            {/* Wariant Premium Plus */}
+            <div className="flex flex-col justify-center md:order-5">
+              <div className="gap-1py-2 flex h-full flex-wrap items-center md:min-h-[60px] md:justify-end md:py-3">
+                <span className="px-3 text-sm leading-relaxed sm:text-base md:sr-only md:px-5 lg:text-lg">
+                  <strong>Wariant Ultimate</strong>
+                  <br />
+                  Najbardziej rozbudowana kombinacja, która oprócz korzyści
+                  wymienionych w powyższym punkcie, posiada również zdolności do
+                  samo poziomowania oraz samoleczenia. Okres ochrony lakieru wg.
+                  producenta <strong>7 lat</strong>. Istnieje możliwość
+                  replikacji drugiego top coatu raz do roku na przykład w
+                  okresie wiosny, w celu wzmocnienia efektu łatwego usuwania
+                  owadów i zanieczyszczeń.
+                </span>
+                <span className="ml-auto px-3 text-sm leading-relaxed sm:text-base md:px-5 lg:text-lg">
+                  4 699 - 5 699 PLN netto
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End: Powłoki Elastomerowe */}
+
       {/* DODATKOWE USUGI */}
       <h2 className="txt-gradient mx-auto mt-12 mb-8 w-fit text-center text-xl font-medium text-balance sm:text-2xl lg:text-3xl">
         <strong className="font-medium">Dodatkowe usługi</strong>
