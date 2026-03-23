@@ -16,6 +16,7 @@ export interface GalleryPhotos {
 export interface GalleryPhoto {
   id?: string;
   src: string;
+  alt?: string;
   createdAt: Date;
 }
 

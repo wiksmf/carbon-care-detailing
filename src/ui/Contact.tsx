@@ -1,3 +1,4 @@
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   HiOutlineMapPin,
   HiOutlinePhone,
@@ -6,11 +7,38 @@ import {
 import { FaInstagram } from "react-icons/fa";
 import { BiLogoFacebook } from "react-icons/bi";
 
-import Map from "./Map";
+const LazyMap = lazy(() => import("./Map"));
 
 function Contact() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [shouldLoadMap, setShouldLoadMap] = useState(false);
+
+  useEffect(() => {
+    if (shouldLoadMap) return;
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoadMap(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" },
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [shouldLoadMap]);
+
   return (
-    <section id="kontakt" className="mx-auto mt-20 max-w-7xl px-5 lg:mt-25">
+    <section
+      ref={sectionRef}
+      id="kontakt"
+      className="mx-auto mt-20 max-w-7xl px-5 lg:mt-25"
+    >
       <h2 className="txt-gradient mb-8 text-xl font-medium sm:text-2xl lg:text-3xl">
         <strong className="font-medium">
           Masz pytania? Umów się na darmową konsultację, gdzie omówimy zakres
@@ -90,7 +118,23 @@ function Contact() {
           </li>
         </ul>
 
-        <Map />
+        {shouldLoadMap ? (
+          <Suspense
+            fallback={
+              <div
+                className="z-1 h-[400px] w-full animate-pulse rounded-2xl bg-gray-900/80"
+                aria-hidden="true"
+              />
+            }
+          >
+            <LazyMap />
+          </Suspense>
+        ) : (
+          <div
+            className="z-1 h-[400px] w-full rounded-2xl bg-gray-900/80"
+            aria-hidden="true"
+          />
+        )}
       </div>
     </section>
   );

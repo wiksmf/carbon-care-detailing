@@ -1,23 +1,24 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { AuthContextProvider } from "./context/AuthContext";
 
 import Homepage from "./pages/Homepage";
 import AppLayout from "./ui/AppLayout";
 import ScrollToTop from "./ui/ScrollToTop";
-import About from "./pages/About";
-import Gallery from "./pages/Gallery";
-import Services from "./pages/Services";
-import Promotions from "./pages/Promotions";
-import Blog from "./pages/Blog";
 import PageNotFound from "./pages/PageNotFound";
 
-import Post from "./ui/Post";
-import Photos from "./ui/Photos";
-import Login from "./ui/Login";
 import PrivateRoute from "./ui/PrivateRoute";
 import Spinner from "./ui/Spinner";
+
+const About = lazy(() => import("./pages/About"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Services = lazy(() => import("./pages/Services"));
+const Promotions = lazy(() => import("./pages/Promotions"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Post = lazy(() => import("./ui/Post"));
+const Photos = lazy(() => import("./ui/Photos"));
+const Login = lazy(() => import("./ui/Login"));
 
 const PrivateHome = lazy(() => import("./pages/PrivateHome"));
 const PrivateCertifications = lazy(
@@ -37,37 +38,33 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index element={<Homepage />} />
+          <Route path="/o-mnie" element={LazyLoad(About)} />
+          <Route path="/oferta" element={LazyLoad(Services)} />
+          <Route path="/promocje" element={LazyLoad(Promotions)} />
+          <Route path="/realizacje" element={LazyLoad(Gallery)} />
+          <Route path="/realizacje/:galleryId" element={LazyLoad(Photos)} />
+          <Route path="/blog" element={LazyLoad(Blog)} />
+          <Route path="/blog/:postId" element={LazyLoad(Post)} />
+          <Route path="*" element={<PageNotFound />} />
+        </Route>
 
-      <AuthContextProvider>
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<Homepage />} />
-            <Route path="/o-mnie" element={<About />} />
-            <Route path="/oferta" element={<Services />} />
-            <Route path="/promocje" element={<Promotions />} />
-            <Route path="/realizacje" element={<Gallery />} />
-            <Route path="/realizacje/:galleryId" element={<Photos />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:postId" element={<Post />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-
-          <Route path="/login" element={<Login />} />
+        <Route element={<AuthContextProvider><Outlet /></AuthContextProvider>}>
+          <Route path="/login" element={LazyLoad(Login)} />
           <Route
             path="/cms"
             element={<PrivateRoute>{LazyLoad(PrivateLayout)}</PrivateRoute>}
           >
             <Route index element={LazyLoad(PrivateHome)} />
-            <Route
-              path="certyfikaty"
-              element={LazyLoad(PrivateCertifications)}
-            />
+            <Route path="certyfikaty" element={LazyLoad(PrivateCertifications)} />
             <Route path="realizacje" element={LazyLoad(PrivateGallery)} />
             <Route path="blog" element={LazyLoad(PrivateBlog)} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
-        </Routes>
-      </AuthContextProvider>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

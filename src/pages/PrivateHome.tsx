@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { auth } from "../firebase/config";
+import type { User } from "firebase/auth";
+import { auth } from "../firebase/auth";
 
 function PrivateHome() {
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
       if (user) setEmail(user.email);
       else setEmail(null);
     });

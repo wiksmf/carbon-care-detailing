@@ -6,18 +6,16 @@ import {
   HiOutlineTrophy,
 } from "react-icons/hi2";
 
-import { getFirst7PhotosOfMostRecentCar } from "../api/firestoreService";
-
 import ButtonLink from "../ui/ButtonLink";
 import Spinner from "../ui/Spinner";
 
-import car1 from "/images/c1.webp";
-import car2 from "/images/vw.jpg";
-import car3 from "/images/mazda.jpg";
-import car4 from "/images/bmw.jpg";
-import car5 from "/images/volvo.jpg";
-import c2 from "/images/c2.webp";
-import c3 from "/images/c3.webp";
+// Use public image paths instead of importing to avoid bundling large assets.
+// Deterministic hero image to improve LCP.
+const HERO_IMAGE = "/images/bmw.webp";
+
+// Secondary images used later on the page
+const C2_IMAGE = "/images/c2.webp";
+const C3_IMAGE = "/images/c3.webp";
 
 import type { GalleryPhoto } from "../types/api";
 
@@ -27,14 +25,14 @@ function Homepage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const carImages = [car1, car2, car3, car4, car5];
-  const [selectedCarImage] = useState(() => {
-    const randomIndex = Math.floor(Math.random() * carImages.length);
-    return carImages[randomIndex];
-  });
+  // Deterministic hero image (matches index.html preload) — improves LCP.
+  const selectedCarImage = HERO_IMAGE;
 
   useEffect(() => {
     async function loadGallery() {
+      const { getFirst7PhotosOfMostRecentCar } = await import(
+        "../api/firestoreService"
+      );
       const result = await getFirst7PhotosOfMostRecentCar();
       setMasonry(result.data);
       setSuccess(result.success);
@@ -50,7 +48,12 @@ function Homepage() {
       <div className="relative h-[70vh] w-full overflow-hidden md:h-[80vh]">
         <img
           src={selectedCarImage}
-          loading="lazy"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          // Reserve intrinsic size to prevent layout shift and help LCP.
+          width={1600}
+          height={900}
           className="h-[60vh] w-full rounded-2xl border-4 border-gray-500/30 object-contain object-top shadow-xs shadow-gray-800/40 md:h-[80vh] md:object-cover md:object-center"
           alt="Kompleksowe usługi pielęgnacji samochodów w Olkuszu - Carbon Care Detailing"
         />
@@ -127,8 +130,13 @@ function Homepage() {
 
           <div className="relative h-[280px] rounded-2xl md:h-[400px] lg:h-[700px]">
             <img
-              src={c2}
+              src={C2_IMAGE}
               loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+              // Provide intrinsic dimensions to reduce layout shift when possible. These fallback sizes match the container aspect ratio.
+              width={1200}
+              height={700}
               className="mx-auto h-[280px] rounded-2xl border-4 border-gray-500/30 object-cover object-center shadow-xs shadow-gray-800/40 md:h-[400px] lg:h-[700px] lg:w-full"
               alt="Polerowanie lakieru, czyszczenie wnętrza, powłoki ceramiczne, folie PPF. Zadbaj o swój samochód z Carbon Care Detailing"
             />
@@ -225,8 +233,12 @@ function Homepage() {
 
           <div className="relative h-[300px] rounded-2xl border-4 border-gray-500/30 shadow-xs shadow-gray-800/40 sm:h-[380px] lg:h-full">
             <img
-              src={c3}
+              src={C3_IMAGE}
               loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+              width={1200}
+              height={800}
               className="h-full w-full rounded-xl object-cover object-center lg:object-bottom"
               alt="Polerowanie lakieru, czyszczenie wnętrza, powłoki ceramiczne, folie PPF. Zadbaj o swój samochód z Carbon Care Detailing"
             />
@@ -266,7 +278,14 @@ function Homepage() {
                 }`}
                 key={photo.id}
               >
-                <img loading="lazy" src={photo.src} alt="" />
+                <img
+                  loading="lazy"
+                  src={photo.src}
+                  alt={photo.alt || ""}
+                  decoding="async"
+                  fetchPriority="low"
+                  className="h-full w-full object-cover"
+                />
               </div>
             ))}{" "}
           </div>

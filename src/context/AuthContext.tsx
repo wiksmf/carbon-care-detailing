@@ -6,7 +6,7 @@ import {
   type User,
   type UserCredential,
 } from "firebase/auth";
-import { auth } from "../firebase/config";
+import { auth } from "../firebase/auth";
 
 interface AuthContextType {
   user: User | null;
