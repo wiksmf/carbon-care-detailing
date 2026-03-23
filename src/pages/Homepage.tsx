@@ -9,13 +9,18 @@ import {
 import ButtonLink from "../ui/ButtonLink";
 import Spinner from "../ui/Spinner";
 
-// Use public image paths instead of importing to avoid bundling large assets.
-// Deterministic hero image to improve LCP.
 const HERO_IMAGE = "/images/bmw.webp";
-
-// Secondary images used later on the page
 const C2_IMAGE = "/images/c2.webp";
 const C3_IMAGE = "/images/c3.webp";
+const MASONRY_IMAGES = [
+  "/images/c-1.jpg",
+  "/images/c-2.jpg",
+  "/images/c-3.jpg",
+  "/images/c-4.jpg",
+  "/images/c-5.jpg",
+  "/images/c-6.jpg",
+  "/images/c-7.jpg",
+];
 
 import type { GalleryPhoto } from "../types/api";
 
@@ -25,7 +30,6 @@ function Homepage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Deterministic hero image (matches index.html preload) — improves LCP.
   const selectedCarImage = HERO_IMAGE;
 
   useEffect(() => {
@@ -51,7 +55,6 @@ function Homepage() {
           loading="eager"
           fetchPriority="high"
           decoding="async"
-          // Reserve intrinsic size to prevent layout shift and help LCP.
           width={1600}
           height={900}
           className="h-[60vh] w-full rounded-2xl border-4 border-gray-500/30 object-contain object-top shadow-xs shadow-gray-800/40 md:h-[80vh] md:object-cover md:object-center"
@@ -134,7 +137,6 @@ function Homepage() {
               loading="lazy"
               decoding="async"
               fetchPriority="low"
-              // Provide intrinsic dimensions to reduce layout shift when possible. These fallback sizes match the container aspect ratio.
               width={1200}
               height={700}
               className="mx-auto h-[280px] rounded-2xl border-4 border-gray-500/30 object-cover object-center shadow-xs shadow-gray-800/40 md:h-[400px] lg:h-[700px] lg:w-full"
@@ -280,7 +282,7 @@ function Homepage() {
               >
                 <img
                   loading="lazy"
-                  src={photo.src}
+                  src={MASONRY_IMAGES[index] ?? photo.src}
                   alt={photo.alt || ""}
                   decoding="async"
                   fetchPriority="low"
