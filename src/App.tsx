@@ -51,14 +51,23 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Route>
 
-        <Route element={<AuthContextProvider><Outlet /></AuthContextProvider>}>
+        <Route
+          element={
+            <AuthContextProvider>
+              <Outlet />
+            </AuthContextProvider>
+          }
+        >
           <Route path="/login" element={LazyLoad(Login)} />
           <Route
             path="/cms"
             element={<PrivateRoute>{LazyLoad(PrivateLayout)}</PrivateRoute>}
           >
             <Route index element={LazyLoad(PrivateHome)} />
-            <Route path="certyfikaty" element={LazyLoad(PrivateCertifications)} />
+            <Route
+              path="certyfikaty"
+              element={LazyLoad(PrivateCertifications)}
+            />
             <Route path="realizacje" element={LazyLoad(PrivateGallery)} />
             <Route path="blog" element={LazyLoad(PrivateBlog)} />
             <Route path="*" element={<PageNotFound />} />

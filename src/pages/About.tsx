@@ -172,24 +172,6 @@ function About() {
         <br />
         <a href="tel:+48666699955">+48 666 699 955</a>
       </p>
-
-      <h2 className="txt-gradient mt-12 mb-8 text-xl font-medium sm:text-2xl lg:text-3xl">
-        <strong className="font-medium">Certyfikaty</strong>
-      </h2>
-
-      {isLoading ? (
-        <Spinner />
-      ) : success && certifications?.length > 0 ? (
-        <GallerySlider gallery={certifications} />
-      ) : error ? (
-        <p className="text-sm leading-relaxed sm:text-base lg:text-lg">
-          Nie udało się załadować certyfikatów.
-        </p>
-      ) : (
-        <p className="text-sm leading-relaxed sm:text-base lg:text-lg">
-          Brak certyfikatów do wyświetlenia.
-        </p>
-      )}
     </div>
   );
 }

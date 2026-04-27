@@ -10,8 +10,6 @@ const navLinks = [
   { href: "/o-mnie", label: "O mnie" },
   { href: "/oferta", label: "Oferta" },
   { href: "/promocje", label: "Promocje" },
-  { href: "/realizacje", label: "Realizacje" },
-  { href: "/blog", label: "Blog" },
   { href: "#kontakt", label: "Kontakt" },
 ];
 

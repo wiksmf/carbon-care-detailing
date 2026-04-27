@@ -256,9 +256,6 @@ function Homepage() {
               <span className="block">Który Odmieni Twój Pojazd</span>
             </strong>
           </h2>
-          <ButtonLink href="/realizacje" type="primary">
-            Obejrzyj realizacje
-          </ButtonLink>
         </div>
 
         {isLoading ? (
