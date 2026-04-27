@@ -1,32 +1,6 @@
-import { useEffect, useState } from "react";
-
-import { getCertifications } from "../api/firestoreService";
-
-import GallerySlider from "../ui/GallerySlider";
-import Spinner from "../ui/Spinner";
-
 import a from "/images/a.webp";
 
-import type { Certification } from "../types/api";
-
 function About() {
-  const [certifications, setCertifications] = useState<Certification[]>([]);
-  const [success, setSuccess] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function loadCertifications() {
-      const result = await getCertifications();
-      setCertifications(result.data);
-      setSuccess(result.success);
-      setError(result.error);
-      setIsLoading(false);
-    }
-
-    loadCertifications();
-  }, []);
-
   return (
     <div className="mx-auto max-w-7xl pt-30 lg:pt-35">
       <h1 className="txt-gradient mb-8 text-2xl leading-tight tracking-wide sm:text-3xl lg:text-4xl">
